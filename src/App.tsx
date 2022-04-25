@@ -6,7 +6,7 @@ import './App.css';
 
 const App = () => {
   const [id, setId] = React.useState(42);
-  const handleIdChange = React.useCallback(newId => {
+  const handleIdChange = React.useCallback((newId: number) => {
     setId(newId);
   }, []);
 

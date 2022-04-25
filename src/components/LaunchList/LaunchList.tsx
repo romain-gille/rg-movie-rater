@@ -6,7 +6,7 @@ export interface OwnProps {
   handleIdChange: (newId: number) => void;
 }
 
-interface Props {
+interface Props extends OwnProps {
   data: LaunchListQuery;
 }
 
