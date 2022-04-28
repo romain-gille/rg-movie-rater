@@ -1,119 +1,87 @@
 import "./styles.css";
-import React, { PureComponent } from "react";
-import { Query } from "@apollo/client/react/components";
 import { gql, useQuery } from "@apollo/client";
 
-interface Users {
-  total: number;
-  data: User[];
+interface MovieData {
+  movie: Movie;
 }
-interface User {
+interface Movie {
+  title: String;
+  overview: String;
+  popularity: number;
+  poster_path: string;
   id: number;
-  first_name: string;
-  last_name: string;
-}
-interface UsersData {
-  users: Users;
-}
-interface UserData {
-  User: User[];
 }
 
-const GET_USERS = gql`
-  query GET_USERS {
-    users @rest(type: "Users", path: "/users") {
-      total
-      data @type(name: "User") {
+interface MoviesData {
+  movies: Movies;
+}
+interface Movies {
+  results: Movie[];
+}
+
+const GET_MOVIE = gql`
+  query GET_MOVIE {
+    movie @rest(type: "Movie", path: "movie/550") {
+      title
+      overview
+      popularity
+      poster_path
+      id
+    }
+  }
+`;
+
+const GET_MOVIE_BEST = gql`
+  query GET_MOVIE_BEST {
+    movies @rest(type: "Movies", path: "movie/popular") {
+      results @type(name: "Results") {
+        title
+        overview
+        popularity
+        poster_path
         id
-        first_name
-        last_name
       }
     }
   }
 `;
 
-export function UserList() {
-  const { loading, error, data } = useQuery<UsersData>(GET_USERS);
-
+export function MovieInfo() {
+  const { loading, error, data } = useQuery<MovieData>(GET_MOVIE);
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     console.error(error);
-
     return <div>Error!</div>;
   }
-if (data){
-  console.error(data.users.data);
-
-  return (<div>
-
-    {data.users.data.map(usr =>
-
-    <p key= {usr.id}>{usr.first_name}</p>
-
-    ) }
-    </div>)
-
-  // return <div>hey {data.users.total}</div>;
-}
+  if (data) {
+    console.log(data.movie);
+    return <div>{data.movie.title}</div>;
+  }
 }
 
-// class Users extends PureComponent {
-//   render() {
-//     return (
-//       <Query query={GET_USERS}>
-//         {({
-//           data: {
-//             users: { data },
-//           },
-//           loading,
-//           error,
-//         }) => (
-//           <ul>
-//             {data.map((user) => (
-//               <li key={user.id}>
-//                 {user.first_name} {user.last_name}
-//               </li>
-//             ))}
-//           </ul>
-//         )}
-//       </Query>
-//     );
-//   }
-// }
-// export default Users;
-
-// export interface OwnProps {
-//   handleIdChange: (newId: number) => void;
-// }
-
-// interface Props extends OwnProps {
-//   data: LaunchListQuery;
-// }
-
-// const className = "LaunchList";
-
-// const LaunchList: React.FC<Props> = ({ data, handleIdChange }) => (
-//   <div className={className}>
-//     <h3>Launches</h3>
-//     <ol className={`${className}__list`}>
-//       {!!data.launches &&
-//         data.launches.map(
-//           (launch, i) =>
-//             !!launch && (
-//               <li
-//                 key={i}
-//                 className={`${className}__item`}
-//                 onClick={() => handleIdChange(launch.flight_number!)}
-//               >
-//                 {launch.mission_name} ({launch.launch_year})
-//               </li>
-//             )
-//         )}
-//     </ol>
-//   </div>
-// );
-
-// export default LaunchList;
+export function MoviesBest() {
+  const { loading, error, data } = useQuery<MoviesData>(GET_MOVIE_BEST);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    console.error(error);
+    return <div>Error!</div>;
+  }
+  if (data) {
+    console.log(data);
+    return (
+      <div className="main-container">
+        <h1>Popular</h1>
+        {data.movies.results.map((mov) => (
+          <div key={mov.id}>
+            <h3>{mov.title}</h3>
+            <h4>{mov.popularity}</h4>
+            <p>{mov.overview}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
