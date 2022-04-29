@@ -3,7 +3,7 @@ import { useLaunchProfileQuery } from "../../generated/graphql";
 import LaunchProfile from "./LaunchProfile";
 
 interface OwnProps {
-  id: number;
+  id: number | undefined;
 }
 
 const LaunchProfileContainer: React.FC<OwnProps> = ({ id }) => {
