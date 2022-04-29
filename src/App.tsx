@@ -1,4 +1,5 @@
 import "./App.css";
+import MovieInfosContainer from "./components/MovieInfos";
 import { MoviesBest } from "./components/MovieList/MovieList";
 
 const App = () => {
@@ -6,7 +7,7 @@ const App = () => {
     <div className="App">
       {/* <LaunchList handleIdChange={handleIdChange} />
       <LaunchProfile id={id} /> */}
-      {MoviesBest()}
+      <MovieInfosContainer id={2} />
     </div>
   );
 };
