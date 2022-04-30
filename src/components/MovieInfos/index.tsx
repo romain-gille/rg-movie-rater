@@ -8,7 +8,9 @@ interface OwnProps {
 }
 
 const MovieInfosContainer: React.FC<OwnProps> = ({ id }) => {
-  const { loading, error, data, refetch } = useQuery<MovieData>(GET_MOVIE);
+  const { loading, error, data, refetch } = useQuery<MovieData>(GET_MOVIE,{variables: { id: String(id) }});
+  console.log(id);
+
   React.useEffect(() => {
     refetch({ id: String(id) });
   }, [refetch, id]);
