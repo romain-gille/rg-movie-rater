@@ -1,4 +1,4 @@
-.main-container {
-  padding: 5rem;
-  overflow: scroll;
+.movie-info__container {
+  padding: 1rem;
+  width: calc(100vw - 400px);
 }

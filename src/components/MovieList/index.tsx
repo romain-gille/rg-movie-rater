@@ -1,12 +1,10 @@
 import { useQuery } from "@apollo/client";
-import MoviesList, { MoviesData } from "./MovieList";
+import MoviesList, { MoviesData, OwnProps } from "./MovieList";
 import { GET_MOVIE_LIST } from "./query";
 
-interface OwnProps {
-  id: number;
-}
 
-const MoviesListContainer: React.FC<OwnProps> = ({ id }) => {
+
+const MoviesListContainer: React.FC<OwnProps> = (props) => {
   const { loading, error, data } = useQuery<MoviesData>(GET_MOVIE_LIST);
   if (loading) {
     return <div>Loading...</div>;
@@ -17,7 +15,7 @@ const MoviesListContainer: React.FC<OwnProps> = ({ id }) => {
   }
   if (data) {
     console.log(data);
-    return <MoviesList data={data.movies.results} />;
+    return <MoviesList data={data.movies.results}  {...props} />;
   }
   else {
     return <div>hey</div>;

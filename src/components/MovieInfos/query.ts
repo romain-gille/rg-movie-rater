@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_MOVIE = gql`
-  query GET_MOVIE {
-    movie @rest(type: "Movie", path: "movie/550") {
+  query GET_MOVIE($id: String!) {
+    movie(id: $id) @rest(type: "Movie", path: "movie/{args.id}") {
       title
       overview
       popularity

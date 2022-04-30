@@ -14,15 +14,19 @@ interface Props {
   data: Movie;
 }
 
+const className = "movie-info";
+
+
 const MovieInfos: React.FC<Props> = ({data}) => {
   if (!data) {
     return <div>No Info available</div>;
   }
   return(
-    <div>
+    <div className={`${className}__container`}>
     <p>{data.title}</p>
     <p>{data.overview}</p>
     <p>{data.popularity}</p>
+    <img src={`https://api.themoviedb.org/3${data.poster_path}`} alt="" />
     <p>{data.poster_path}</p>
     <p>{data.id}</p>
     </div>

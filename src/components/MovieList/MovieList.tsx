@@ -2,7 +2,9 @@ import { Movie } from "../MovieInfos/MovieInfos";
 import "./styles.css";
 
 
-
+export interface OwnProps {
+  handleIdChange: (newId: number) => void;
+}
 
 export interface MoviesData {
   movies: Movies;
@@ -11,22 +13,28 @@ interface Movies {
   results: Movie[];
 }
 
-interface Props {
+interface Props extends OwnProps {
   data: Movie[];
 }
 
-const MoviesList: React.FC<Props> = ({ data }) => {
+const className = "movies-list";
+
+const MoviesList: React.FC<Props> = ({ data, handleIdChange }) => {
   if (!data) {
     return <div>No Info available</div>;
   }
   return (
-    <div className="main-container">
+    <div className={`${className}__container`}>
       <h1>Popular</h1>
       {data.map((mov) => (
-        <div key={mov.id}>
+        <div
+          key={mov.id}
+          className={`${className}__el`}
+          onClick={() => handleIdChange(mov.id!)}
+        >
           <h3>{mov.title}</h3>
           <h4>{mov.popularity}</h4>
-          <p>{mov.overview}</p>
+          {/* <p>{mov.overview}</p> */}
         </div>
       ))}
     </div>
