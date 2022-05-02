@@ -10,6 +10,7 @@ export const GET_MOVIE_SEARCH = gql`
         poster_path
         id
         vote_average
+
       }
     }
   }

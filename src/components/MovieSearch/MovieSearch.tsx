@@ -1,11 +1,10 @@
+import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { Movie } from "../MovieInfos/MovieInfos";
 import "./styles.css";
-
 
 export interface OwnProps {
   search: string;
   handleIdChange: (newId: number) => void;
-
 }
 
 export interface MoviesData {
@@ -17,7 +16,6 @@ interface Movies {
 
 interface Props extends OwnProps {
   data: Movie[];
-
 }
 
 const className = "movies-list";
@@ -30,20 +28,46 @@ const MoviesSearch: React.FC<Props> = ({ data, handleIdChange }) => {
   }
   return (
     <div className={`${className}__container`}>
-      <h1>Search</h1>
-      {data.map((mov) => (
-        <div
-          key={mov.id}
-          className={`${className}__el`}
-          onClick={() => handleIdChange(mov.id!)}
-        >
-          <h3>{mov.title}</h3>
-          <h3>{mov.id}</h3>
 
-          {/* <h4>{mov.vote_average}</h4> */}
-          {/* <p>{mov.overview}</p> */}
-        </div>
-      ))}
+      <Grid container spacing={2}>
+        {data.map((mov) => (
+          <Grid item xs={6} md={3} spacing={3} key={mov.id}>
+            {/* <h3>{mov.title}</h3> */}
+            <Card
+              className={`${className}__el`}
+              onClick={() => handleIdChange(mov.id!)}
+            >
+              <CardMedia
+                component="img"
+                // height="300"
+                image={`https://image.tmdb.org/t/p/w500/${mov.poster_path}`}
+                alt={`https://image.tmdb.org/t/p/w500/${mov.poster_path}`}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h6">
+                  {mov.title}
+                </Typography>
+                {/* <Typography variant="body2">
+                  Lizards are a widespread group of squamate reptiles, with over
+                  6,000 species, ranging across all continents except Antarctica
+                </Typography> */}
+              </CardContent>
+              {/* <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button>
+              </CardActions> */}
+            </Card>
+
+            {/* <img
+              className={`${className}__img`}
+              src={`https://image.tmdb.org/t/p/w500/${mov.poster_path}`}
+              alt={`https://image.tmdb.org/t/p/w500/${mov.poster_path}`}
+            /> */}
+            {/* <h4>{mov.vote_average}</h4> */}
+            {/* <p>{mov.overview}</p> */}
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };

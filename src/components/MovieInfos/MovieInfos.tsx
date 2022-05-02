@@ -24,11 +24,15 @@ const MovieInfos: React.FC<Props> = ({data}) => {
   }
   return(
     <div className={`${className}__container`}>
-    <p>{data.title}</p>
+
+    <img className={`${className}__img`} src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} />
+    <div className={`${className}__content`}>
+    <h2>{data.title}</h2>
     <p>{data.overview}</p>
     <p>{data.vote_average}</p>
-    <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} />
+
     <p>{data.id}</p>
+    </div>
     </div>
   )
 }

@@ -1,4 +1,17 @@
 .movie-info__container {
   padding: 1rem;
-  width: calc(100vw - 400px);
+  width: calc(100vw - 800px);
+  position: sticky;
+  top: 0px;
+  height: calc(100vh - 80px);
+  display: flex;
+}
+
+.movie-info__img {
+  height: 100%;
+  display: block;
+  border-radius: 5px;
+}
+.movie-info__content {
+  padding: 0rem 1rem;
 }

@@ -1,14 +1,27 @@
 .movies-list__container {
   overflow: scroll;
-  width: 400px;
+  width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .movies-list__el {
-  border-top: solid grey 1px;
-  padding: 1rem 2rem;
+  height: 380px;
   cursor: pointer;
-  width: 100%;
 }
 .movies-list__el:hover {
   background-color: rgb(231, 231, 231);
+}
+
+.movies-list__img {
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  width: 85%;
+  border-radius: 10px;
+  transition: all 0.1s;
+}
+.movies-list__img:hover {
+  width: 95%;
 }
