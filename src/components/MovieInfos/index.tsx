@@ -9,7 +9,7 @@ interface OwnProps {
 
 const MovieInfosContainer: React.FC<OwnProps> = ({ id }) => {
   const { loading, error, data, refetch } = useQuery<MovieData>(GET_MOVIE,{variables: { id: String(id) }});
-  console.log(id);
+
 
   React.useEffect(() => {
     refetch({ id: String(id) });
@@ -18,11 +18,9 @@ const MovieInfosContainer: React.FC<OwnProps> = ({ id }) => {
     return <div>Loading...</div>;
   }
   if (error) {
-    console.error(error);
     return <div>Error!</div>;
   }
   if (data) {
-    console.log(data.movie);
     return <MovieInfos data={data.movie} />;
   }
   else {

@@ -1,21 +1,30 @@
 import React from "react";
 import "./App.css";
 import MovieInfosContainer from "./components/MovieInfos";
-import MoviesListContainer from "./components/MovieList";
+import MoviesSearchContainer from "./components/MovieSearch";
+import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
-  const [id, setId] = React.useState(42);
+  const [id, setId] = React.useState(422222);
+  const [search, setSearch] = React.useState("batman");
   const handleIdChange = React.useCallback((newId: number) => {
-    console.log(newId);
     setId(newId);
   }, []);
-  return (
-    <div className="App">
-      {/* <LaunchList handleIdChange={handleIdChange} />
-      <LaunchProfile id={id} /> */}
-      <MoviesListContainer handleIdChange={handleIdChange}/>
-      <MovieInfosContainer id={id}/>
 
+  const handleSearchChange = React.useCallback((newSearch: string) => {
+    setSearch(newSearch);
+  }, []);
+  return (
+    <div>
+      <NavBar handleSearchChange={handleSearchChange} />
+      <div className="App">
+        <MoviesSearchContainer
+          handleIdChange={handleIdChange}
+          search={search}
+        />
+
+        <MovieInfosContainer id={id} />
+      </div>
     </div>
   );
 };

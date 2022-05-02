@@ -33,7 +33,7 @@ const MoviesList: React.FC<Props> = ({ data, handleIdChange }) => {
           onClick={() => handleIdChange(mov.id!)}
         >
           <h3>{mov.title}</h3>
-          <h4>{mov.popularity}</h4>
+          <h4>{mov.vote_average}</h4>
           {/* <p>{mov.overview}</p> */}
         </div>
       ))}

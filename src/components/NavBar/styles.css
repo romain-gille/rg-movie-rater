@@ -1,0 +1,8 @@
+.navbar__search {
+  padding-left: 50px;
+  margin: 50px;
+}
+.navbar__content {
+  display: flex;
+  justify-content: space-between;
+}

@@ -5,9 +5,10 @@ export const GET_MOVIE = gql`
     movie(id: $id) @rest(type: "Movie", path: "movie/{args.id}") {
       title
       overview
-      popularity
+
       poster_path
       id
+      vote_average
     }
   }
 `;
