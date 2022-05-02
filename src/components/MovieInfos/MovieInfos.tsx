@@ -9,6 +9,7 @@ export interface Movie {
   popularity: number;
   poster_path: string;
   id: number;
+  vote_average: number
 }
 interface Props {
   data: Movie;
@@ -25,9 +26,8 @@ const MovieInfos: React.FC<Props> = ({data}) => {
     <div className={`${className}__container`}>
     <p>{data.title}</p>
     <p>{data.overview}</p>
-    <p>{data.popularity}</p>
-    <img src={`https://api.themoviedb.org/3${data.poster_path}`} alt="" />
-    <p>{data.poster_path}</p>
+    <p>{data.vote_average}</p>
+    <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} />
     <p>{data.id}</p>
     </div>
   )

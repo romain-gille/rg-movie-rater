@@ -3,7 +3,9 @@ import "./styles.css";
 
 
 export interface OwnProps {
+  search: string;
   handleIdChange: (newId: number) => void;
+
 }
 
 export interface MoviesData {
@@ -15,17 +17,20 @@ interface Movies {
 
 interface Props extends OwnProps {
   data: Movie[];
+
 }
 
 const className = "movies-list";
 
-const MoviesList: React.FC<Props> = ({ data, handleIdChange }) => {
+const MoviesSearch: React.FC<Props> = ({ data, handleIdChange }) => {
+  console.log(data);
+
   if (!data) {
     return <div>No Info available</div>;
   }
   return (
     <div className={`${className}__container`}>
-      <h1>Popular</h1>
+      <h1>Search</h1>
       {data.map((mov) => (
         <div
           key={mov.id}
@@ -33,7 +38,9 @@ const MoviesList: React.FC<Props> = ({ data, handleIdChange }) => {
           onClick={() => handleIdChange(mov.id!)}
         >
           <h3>{mov.title}</h3>
-          <h4>{mov.vote_average}</h4>
+          <h3>{mov.id}</h3>
+
+          {/* <h4>{mov.vote_average}</h4> */}
           {/* <p>{mov.overview}</p> */}
         </div>
       ))}
@@ -41,4 +48,4 @@ const MoviesList: React.FC<Props> = ({ data, handleIdChange }) => {
   );
 };
 
-export default MoviesList;
+export default MoviesSearch;

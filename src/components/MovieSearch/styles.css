@@ -1,0 +1,14 @@
+.movies-list__container {
+  overflow: scroll;
+  width: 400px;
+}
+
+.movies-list__el {
+  border-top: solid grey 1px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  width: 100%;
+}
+.movies-list__el:hover {
+  background-color: rgb(231, 231, 231);
+}

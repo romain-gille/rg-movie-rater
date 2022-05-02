@@ -10,11 +10,11 @@ const MoviesListContainer: React.FC<OwnProps> = (props) => {
     return <div>Loading...</div>;
   }
   if (error) {
-    console.error(error);
+
     return <div>Error!</div>;
   }
   if (data) {
-    console.log(data);
+
     return <MoviesList data={data.movies.results}  {...props} />;
   }
   else {

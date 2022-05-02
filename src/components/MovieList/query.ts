@@ -9,6 +9,7 @@ export const GET_MOVIE_LIST = gql`
         popularity
         poster_path
         id
+        vote_average
       }
     }
   }
