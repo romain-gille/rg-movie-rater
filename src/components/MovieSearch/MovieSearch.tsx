@@ -28,7 +28,6 @@ const MoviesSearch: React.FC<Props> = ({ data, handleIdChange }) => {
   }
   return (
     <div className={`${className}__container`}>
-
       <Grid container spacing={2}>
         {data.map((mov) => (
           <Grid item xs={6} md={3} spacing={3} key={mov.id}>
@@ -43,15 +42,12 @@ const MoviesSearch: React.FC<Props> = ({ data, handleIdChange }) => {
                 image={`https://image.tmdb.org/t/p/w500/${mov.poster_path}`}
                 alt={`https://image.tmdb.org/t/p/w500/${mov.poster_path}`}
               />
-              <CardContent>
+              <div className="card-content">
                 <Typography gutterBottom variant="h6">
                   {mov.title}
                 </Typography>
-                {/* <Typography variant="body2">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
-                </Typography> */}
-              </CardContent>
+              </div>
+
               {/* <CardActions>
                 <Button size="small">Share</Button>
                 <Button size="small">Learn More</Button>
