@@ -7,8 +7,9 @@
 }
 
 .movies-list__el {
-  height: 380px;
+  height: 250px;
   cursor: pointer;
+  position: relative;
 }
 .movies-list__el:hover {
   background-color: rgb(231, 231, 231);
@@ -18,10 +19,23 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  width: 85%;
   border-radius: 10px;
-  transition: all 0.1s;
 }
-.movies-list__img:hover {
-  width: 95%;
+
+.card-content {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 250px;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  color: rgba(255, 255, 255, 0);
+  padding: 0.5rem;
+}
+.card-content:hover {
+  background-image: linear-gradient(0deg, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+  color: rgb(240, 240, 240);
+  transition: all 0.5s;
 }

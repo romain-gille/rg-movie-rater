@@ -1,3 +1,5 @@
+import { Chip, Typography } from "@mui/material";
+import { generateKey } from "crypto";
 import "./styles.css";
 
 export interface MovieData {
@@ -9,7 +11,13 @@ export interface Movie {
   popularity: number;
   poster_path: string;
   id: number;
-  vote_average: number
+  vote_average: number;
+  release_date?: string;
+  runtime?: number;
+  genres?: Genre[];
+}
+interface Genre {
+  name: string;
 }
 interface Props {
   data: Movie;
@@ -17,24 +25,39 @@ interface Props {
 
 const className = "movie-info";
 
-
-const MovieInfos: React.FC<Props> = ({data}) => {
+const MovieInfos: React.FC<Props> = ({ data }) => {
   if (!data) {
     return <div>No Info available</div>;
   }
-  return(
+  if (!data.genres) {
+    return <div>No Info available</div>;
+  }
+  console.log(data.genres);
+
+  return (
     <div className={`${className}__container`}>
-
-    <img className={`${className}__img`} src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} />
-    <div className={`${className}__content`}>
-    <h2>{data.title}</h2>
-    <p>{data.overview}</p>
-    <p>{data.vote_average}</p>
-
-    <p>{data.id}</p>
+      <img
+        className={`${className}__img`}
+        src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+        alt={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+      />
+      <div className={`${className}__content`}>
+        <Typography variant="h3">{data.title}</Typography>
+        <Typography variant="body1" my={2}>
+          {data.overview}
+        </Typography>
+        <Typography variant="h6">
+          Release date: {data.release_date?.substring(0, 4)}
+        </Typography>
+        <Typography variant="h6">Duration: {data.runtime} min</Typography>
+        <Typography variant="h6">
+          {data.genres!.map((genre) => (
+            <Chip label={genre.name} variant="outlined" size="medium" />
+          ))}
+        </Typography>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default MovieInfos
+export default MovieInfos;

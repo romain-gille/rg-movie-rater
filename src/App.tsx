@@ -22,7 +22,6 @@ const App = () => {
           handleIdChange={handleIdChange}
           search={search}
         />
-
         <MovieInfosContainer id={id} />
       </div>
     </div>
